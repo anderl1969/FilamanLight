@@ -1,32 +1,26 @@
-# FilaMan - Filament Management System
+# FilaMan Light
 
-FilaMan ist ein Filament-Managementsystem für den 3D-Druck. Es verwendet ESP32-Hardware für Gewichtsmessungen und NFC-Tag-Management. 
-Benutzer können Filamentspulen verwalten, den Status des Automatic Material System (AMS) von Bablulab Druckern überwachen und Einstellungen über eine Weboberfläche vornehmen. 
+**FilaMan Light** basiert auf [FilaMan](https://github.com/ManuelW77/Filaman) von [ManuelW77](https://github.com/ManuelW77)
+Im Gegensatz zum Original beschränkt sich die Light Version auf das Lesen und Schreiben von NFC Tags. Es verzichtet explizit auf Funktionalität der Waage. Die Idee ist, ein schlankes Gerät in der Nähe des PCs zu haben, mit dem Tags für neue Filament Spulen geschrieben werden können. Es ist als **Ergänzung** zum original FilaMan gedacht.
+
+## Änderungen ggü. dem Original
+- Anpassung der Hostnamen um Konflikte mit einem Original FilaMan zu vermeiden.
+- Keine Load Cell Unterstützung
+- Keine Touch Sensor Unterstützung
+
+## FilaMan - Filament Management System
+
+FilaMan ist ein Filament-Managementsystem für den 3D-Druck. Es verwendet ESP32-Hardware für Gewichtsmessungen und NFC-Tag-Management.
+Benutzer können Filamentspulen verwalten, den Status des Automatic Material System (AMS) von Bablulab Druckern überwachen und Einstellungen über eine Weboberfläche vornehmen.
 Das System integriert sich nahtlos mit der [Spoolman](https://github.com/Donkie/Spoolman) Filamentverwaltung, zusätzlich mit [Bambulab](https://bambulab.com/en-us) 3D-Druckern und sowie dem [Openspool](https://github.com/spuder/OpenSpool) NFC-TAG Format.
 
 ![Scale](./img/scale_trans.png)
 
 Weitere Bilder finden Sie im [img Ordner](/img/)
-oder auf meiner Website: [FilaMan Website](https://www.filaman.app)  
-Deutsches Erklärvideo: [Youtube](https://youtu.be/uNDe2wh9SS8?si=b-jYx4I1w62zaOHU)  
+oder auf meiner Website: [FilaMan Website](https://www.filaman.app)
+Deutsches Erklärvideo: [Youtube](https://youtu.be/uNDe2wh9SS8?si=b-jYx4I1w62zaOHU)
 Discord Server: [https://discord.gg/my7Gvaxj2v](https://discord.gg/my7Gvaxj2v)
 
-## NEU: Recycling Fabrik
-
-<a href="https://www.recyclingfabrik.com" target="_blank">
-    <img src="img/rf-logo.png" alt="Recycling Fabrik" width="200">
-</a>
-
-FilaMan wird von [Recycling Fabrik](https://www.recyclingfabrik.com) unterstützt.
-Recycling Fabrik wird demnächst auf seinen Spulen einen FilaMan tauglichen NFC Tag anbieten. Das hat den Vorteil,
-dass die Spulen direkt über FilaMan, ganz automatisch, erkannt und in Spoolman importiert werden können.
-
-**Was ist Recycling Fabrik?**
-
-Die Recycling Fabrik ist ein deutsches Unternehmen, das sich der Entwicklung und Herstellung von nachhaltigem 3D-Druck-Filament verschrieben hat. 
-Ihre Filamente bestehen zu 100 % aus recyceltem Material, welches sowohl vom Endkunden, als auch aus der Industrie stammt – für eine umweltbewusste und ressourcenschonende Zukunft.
-
-Mehr Informationen und Produkte findest du hier: [www.recyclingfabrik.com](https://www.recyclingfabrik.com)
 
 ---
 
@@ -43,12 +37,12 @@ Mehr Informationen und Produkte findest du hier: [www.recyclingfabrik.com](https
 
 ### Weboberflächen-Funktionen
 - **Echtzeit-Updates:** WebSocket-Verbindung für Live-Daten-Updates.
-- **NFC-Tag-Verwaltung:** 
+- **NFC-Tag-Verwaltung:**
     - Filamentdaten auf NFC-Tags schreiben.
     - Verwendet das NFC-Tag-Format von [Openspool](https://github.com/spuder/OpenSpool)
     - Ermöglicht automatische Spulenerkennung im AMS
     - **Hersteller Tag Unterstützung:** Automatische Erstellung von Spoolman-Einträgen aus Hersteller NFC-Tags ([Mehr erfahren](README_ManufacturerTags_DE.md))
-- **Bambulab AMS-Integration:** 
+- **Bambulab AMS-Integration:**
   - Anzeige der aktuellen AMS-Fachbelegung.
   - Zuordnung von Filamenten zu AMS-Slots.
   - Unterstützung für externe Spulenhalter.
@@ -130,7 +124,7 @@ Wenn Sie zum ersten Mal einen Hersteller NFC-Tag scannen:
 | PN532 SCL         | 22        |
 | TTP223 I/O        | 25        |
 
-**!! Achte darauf, dass am PN532 die DIP-Schalter auf I2C gestellt sind**  
+**!! Achte darauf, dass am PN532 die DIP-Schalter auf I2C gestellt sind**
 **Nutze den 3V Pin vom ESP für den Touch Sensor**
 
 ![Wiring](./img/Schaltplan.png)
@@ -138,10 +132,10 @@ Wenn Sie zum ersten Mal einen Hersteller NFC-Tag scannen:
 ![myWiring](./img/IMG_2589.jpeg)
 ![myWiring](./img/IMG_2590.jpeg)
 
-*Die Wägezelle wird bei den meisten HX711 Modulen folgendermaßen verkabelt:  
-E+ rot  
-E- schwarz  
-A- weiß  
+*Die Wägezelle wird bei den meisten HX711 Modulen folgendermaßen verkabelt:
+E+ rot
+E- schwarz
+A- weiß
 A+ grün*
 
 ## Software-Abhängigkeiten
