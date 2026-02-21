@@ -7,22 +7,22 @@
 #include "display.h"
 #include <ArduinoJson.h>
 typedef enum {
-    API_INIT,
-    API_IDLE,
-    API_TRANSMITTING
+     API_INIT,
+     API_IDLE,
+     API_TRANSMITTING
 } spoolmanApiStateType;
 
 typedef enum {
-    API_REQUEST_OCTO_SPOOL_UPDATE,
-    API_REQUEST_BAMBU_UPDATE,
-    API_REQUEST_SPOOL_TAG_ID_UPDATE,
-    API_REQUEST_SPOOL_WEIGHT_UPDATE,
-    API_REQUEST_SPOOL_LOCATION_UPDATE,
-    API_REQUEST_VENDOR_CREATE,
-    API_REQUEST_VENDOR_CHECK,
-    API_REQUEST_FILAMENT_CHECK,
-    API_REQUEST_FILAMENT_CREATE,
-    API_REQUEST_SPOOL_CREATE
+  API_REQUEST_OCTO_SPOOL_UPDATE,
+  API_REQUEST_BAMBU_UPDATE,
+  API_REQUEST_SPOOL_TAG_ID_UPDATE,
+  API_REQUEST_SPOOL_WEIGHT_UPDATE,
+  API_REQUEST_SPOOL_LOCATION_UPDATE,
+  API_REQUEST_VENDOR_CREATE,
+  API_REQUEST_VENDOR_CHECK,
+  API_REQUEST_FILAMENT_CHECK,
+  API_REQUEST_FILAMENT_CREATE,
+  API_REQUEST_SPOOL_CREATE
 } SpoolmanApiRequestType;
 
 extern volatile spoolmanApiStateType spoolmanApiState;
@@ -36,7 +36,8 @@ extern bool spoolmanConnected;
 extern uint16_t updateOctoSpoolId;
 
 bool checkSpoolmanInstance();
-bool saveSpoolmanUrl(const String& url, bool octoOn, const String& octoWh, const String& octoTk);
+// bool saveSpoolmanUrl(const String& url, bool octoOn, const String& octoWh, const String& octoTk);
+bool saveSpoolmanUrl(const String &url);
 String loadSpoolmanUrl(); // Neue Funktion zum Laden der URL
 bool checkSpoolmanExtraFields(); // Neue Funktion zum Überprüfen der Extrafelder
 JsonDocument fetchSingleSpoolInfo(int spoolId); // API-Funktion für die Webseite

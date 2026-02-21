@@ -47,6 +47,7 @@ void setup() {
 
   // Bambu MQTT
   // setupMqtt();
+  bambuDisabled = true;
 
   // NFC Reader
   startNfc();

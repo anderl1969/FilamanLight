@@ -237,7 +237,7 @@ void setupWebserver(AsyncWebServer &server) {
   Serial.println(spoolmanUrl);
 
   // Load Bamb credentials:
-  loadBambuCredentials();
+  // loadBambuCredentials();
 
   // Route für about
   server.on("/about", HTTP_GET, [](AsyncWebServerRequest *request) {
@@ -325,13 +325,13 @@ void setupWebserver(AsyncWebServer &server) {
       return;
     }
 
-    if (request->getParam("octoEnabled")->value() == "true" &&
-        (!request->hasParam("octoUrl") || !request->hasParam("octoToken"))) {
-      request->send(400, "application/json",
-                    "{\"success\": false, \"error\": \"Missing OctoPrint URL "
-                    "or Token parameter\"}");
-      return;
-    }
+    // if (request->getParam("octoEnabled")->value() == "true" &&
+    //     (!request->hasParam("octoUrl") || !request->hasParam("octoToken"))) {
+    //   request->send(400, "application/json",
+    //                 "{\"success\": false, \"error\": \"Missing OctoPrint URL
+    //                 " "or Token parameter\"}");
+    //   return;
+    // }
 
     String url = request->getParam("url")->value();
     if (url.indexOf("http://") == -1 && url.indexOf("https://") == -1) {
@@ -342,18 +342,19 @@ void setupWebserver(AsyncWebServer &server) {
       url = url.substring(0, url.length() - 1);
     }
 
-    bool octoEnabled =
-        (request->getParam("octoEnabled")->value() == "true") ? true : false;
-    String octoUrl = request->getParam("octoUrl")->value();
-    String octoToken = (request->getParam("octoToken")->value() != "")
-                           ? request->getParam("octoToken")->value()
-                           : "";
+    // bool octoEnabled =
+    //     (request->getParam("octoEnabled")->value() == "true") ? true : false;
+    // String octoUrl = request->getParam("octoUrl")->value();
+    // String octoToken = (request->getParam("octoToken")->value() != "")
+    //                        ? request->getParam("octoToken")->value()
+    //                        : "";
 
     url.trim();
-    octoUrl.trim();
-    octoToken.trim();
+    // octoUrl.trim();
+    // octoToken.trim();
 
-    bool healthy = saveSpoolmanUrl(url, octoEnabled, octoUrl, octoToken);
+    bool healthy = saveSpoolmanUrl(url);
+    // bool healthy = saveSpoolmanUrl(url, octoEnabled, octoUrl, octoToken);
     String jsonResponse =
         "{\"healthy\": " + String(healthy ? "true" : "false") + "}";
 
@@ -361,51 +362,51 @@ void setupWebserver(AsyncWebServer &server) {
   });
 
   // Route für das Überprüfen der Bambu-Instanz
-  server.on("/api/bambu", HTTP_GET, [](AsyncWebServerRequest *request) {
-    if (request->hasParam("remove")) {
-      if (removeBambuCredentials()) {
-        request->send(200, "application/json", "{\"success\": true}");
-      } else {
-        request->send(500, "application/json",
-                      "{\"success\": false, \"error\": \"Fehler beim Löschen "
-                      "der Bambu-Credentials\"}");
-      }
-      return;
-    }
-
-    if (!request->hasParam("bambu_ip") ||
-        !request->hasParam("bambu_serialnr") ||
-        !request->hasParam("bambu_accesscode")) {
-      request->send(400, "application/json",
-                    "{\"success\": false, \"error\": \"Missing parameter\"}");
-      return;
-    }
-
-    String bambu_ip = request->getParam("bambu_ip")->value();
-    String bambu_serialnr = request->getParam("bambu_serialnr")->value();
-    String bambu_accesscode = request->getParam("bambu_accesscode")->value();
-    bool autoSend =
-        (request->getParam("autoSend")->value() == "true") ? true : false;
-    String autoSendTime = request->getParam("autoSendTime")->value();
-
-    bambu_ip.trim();
-    bambu_serialnr.trim();
-    bambu_accesscode.trim();
-    autoSendTime.trim();
-
-    if (bambu_ip.length() == 0 || bambu_serialnr.length() == 0 ||
-        bambu_accesscode.length() == 0) {
-      request->send(400, "application/json",
-                    "{\"success\": false, \"error\": \"Empty parameter\"}");
-      return;
-    }
-
-    bool success = saveBambuCredentials(
-        bambu_ip, bambu_serialnr, bambu_accesscode, autoSend, autoSendTime);
-
-    request->send(200, "application/json",
-                  "{\"healthy\": " + String(success ? "true" : "false") + "}");
-  });
+  // server.on("/api/bambu", HTTP_GET, [](AsyncWebServerRequest *request) {
+  //   if (request->hasParam("remove")) {
+  //     if (removeBambuCredentials()) {
+  //       request->send(200, "application/json", "{\"success\": true}");
+  //     } else {
+  //       request->send(500, "application/json",
+  //                     "{\"success\": false, \"error\": \"Fehler beim Löschen "
+  //                     "der Bambu-Credentials\"}");
+  //     }
+  //     return;
+  //   }
+  //
+  //   if (!request->hasParam("bambu_ip") ||
+  //       !request->hasParam("bambu_serialnr") ||
+  //       !request->hasParam("bambu_accesscode")) {
+  //     request->send(400, "application/json",
+  //                   "{\"success\": false, \"error\": \"Missing parameter\"}");
+  //     return;
+  //   }
+  //
+  //   String bambu_ip = request->getParam("bambu_ip")->value();
+  //   String bambu_serialnr = request->getParam("bambu_serialnr")->value();
+  //   String bambu_accesscode = request->getParam("bambu_accesscode")->value();
+  //   bool autoSend =
+  //       (request->getParam("autoSend")->value() == "true") ? true : false;
+  //   String autoSendTime = request->getParam("autoSendTime")->value();
+  //
+  //   bambu_ip.trim();
+  //   bambu_serialnr.trim();
+  //   bambu_accesscode.trim();
+  //   autoSendTime.trim();
+  //
+  //   if (bambu_ip.length() == 0 || bambu_serialnr.length() == 0 ||
+  //       bambu_accesscode.length() == 0) {
+  //     request->send(400, "application/json",
+  //                   "{\"success\": false, \"error\": \"Empty parameter\"}");
+  //     return;
+  //   }
+  //
+  //   bool success = saveBambuCredentials(
+  //       bambu_ip, bambu_serialnr, bambu_accesscode, autoSend, autoSendTime);
+  //
+  //   request->send(200, "application/json",
+  //                 "{\"healthy\": " + String(success ? "true" : "false") + "}");
+  // });
 
   // Route für das Überprüfen der Spoolman-Instanz
   server.on("/reboot", HTTP_GET,

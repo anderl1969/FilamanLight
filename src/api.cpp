@@ -1332,22 +1332,23 @@ bool checkSpoolmanInstance() {
   return returnValue;
 }
 
-bool saveSpoolmanUrl(const String &url, bool octoOn, const String &octo_url,
-                     const String &octoTk) {
+// bool saveSpoolmanUrl(const String &url, bool octoOn, const String &octo_url,
+//                      const String &octoTk) {
+bool saveSpoolmanUrl(const String &url) {
   Preferences preferences;
   preferences.begin(NVS_NAMESPACE_API, false); // false = readwrite
   preferences.putString(NVS_KEY_SPOOLMAN_URL, url);
-  preferences.putBool(NVS_KEY_OCTOPRINT_ENABLED, octoOn);
-  preferences.putString(NVS_KEY_OCTOPRINT_URL, octo_url);
-  preferences.putString(NVS_KEY_OCTOPRINT_TOKEN, octoTk);
+  // preferences.putBool(NVS_KEY_OCTOPRINT_ENABLED, octoOn);
+  // preferences.putString(NVS_KEY_OCTOPRINT_URL, octo_url);
+  // preferences.putString(NVS_KEY_OCTOPRINT_TOKEN, octoTk);
   preferences.end();
 
   // TBD: This could be handled nicer in the future
   spoolmanExtraFieldsChecked = false;
   spoolmanUrl = url;
-  octoEnabled = octoOn;
-  octoUrl = octo_url;
-  octoToken = octoTk;
+  // octoEnabled = octoOn;
+  // octoUrl = octo_url;
+  // octoToken = octoTk;
 
   return checkSpoolmanInstance();
 }
@@ -1356,11 +1357,12 @@ String loadSpoolmanUrl() {
   Preferences preferences;
   preferences.begin(NVS_NAMESPACE_API, true);
   String spoolmanUrl = preferences.getString(NVS_KEY_SPOOLMAN_URL, "");
-  octoEnabled = preferences.getBool(NVS_KEY_OCTOPRINT_ENABLED, false);
-  if (octoEnabled) {
-    octoUrl = preferences.getString(NVS_KEY_OCTOPRINT_URL, "");
-    octoToken = preferences.getString(NVS_KEY_OCTOPRINT_TOKEN, "");
-  }
+  octoEnabled = false; // DISABLED for Lite Version
+  // octoEnabled = preferences.getBool(NVS_KEY_OCTOPRINT_ENABLED, false);
+  // if (octoEnabled) {
+  //   octoUrl = preferences.getString(NVS_KEY_OCTOPRINT_URL, "");
+  //   octoToken = preferences.getString(NVS_KEY_OCTOPRINT_TOKEN, "");
+  // }
   preferences.end();
   return spoolmanUrl;
 }
