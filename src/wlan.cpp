@@ -64,7 +64,7 @@ void initWiFi() {
   wm.setWiFiAutoReconnect(true);
   wm.setConnectTimeout(10);
 
-  oledShowProgressBar(1, 7, DISPLAY_BOOT_TEXT, "WiFi init");
+  oledShowProgressBar(1, 5, DISPLAY_BOOT_TEXT, "WiFi init");
 
   // bool res = wm.autoConnect("FilaLite"); // anonymous ap
   if (!wm.autoConnect("FilaLite")) {

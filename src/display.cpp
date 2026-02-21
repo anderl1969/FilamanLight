@@ -19,7 +19,7 @@ void setupDisplay() {
   display.clearDisplay();
 
   oledShowTopRow();
-  oledShowProgressBar(0, 7, DISPLAY_BOOT_TEXT, "Display init");
+  oledShowProgressBar(0, 5, DISPLAY_BOOT_TEXT, "Display init");
 }
 
 void oledclearline() {
