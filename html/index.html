@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FilaMan - Filament Management Tool</title>
+    <title>FilaMan Lite - FilaMan NFC Tool</title>
     <link rel="icon" type="image/png" href="/favicon.ico">
     <link rel="stylesheet" href="style.css">
     <script>
@@ -29,15 +29,17 @@
         </div>
         <nav style="display: flex; gap: 1rem;">
             <a href="/">Start</a>
-            <a href="/waage">Scale</a>
+            <!--<a href="/waage">Scale</a>-->
             <a href="/spoolman">Spoolman</a>
             <a href="/about">About</a>
             <a href="/upgrade">Upgrade</a>
         </nav>
         <div class="status-container">
+            <!--
             <div class="status-item">
                 <span class="status-dot" id="bambuDot"></span>B
             </div>
+            -->
             <div class="status-item">
                 <span class="status-dot" id="spoolmanDot"></span>S
             </div>
@@ -47,30 +49,36 @@
 <!-- head -->
 
     <div class="content">
-        <h1>FilaMan</h1>
-        <p>Filament Management Tool</p>
-        <p>Your smart solution for <strong>Filament Management</strong> in 3D printing.</p>
+        <h1>FilaMan Lite</h1>
+        <p>Filament Management Tool - Light Version</p>
+        <p>Your NFC toolkit for <strong>FilaMan</strong>.</p>
 
-        <h2>About FilaMan</h2>
+        <h2>About FilaMan Lite</h2>
         <p>
-            FilaMan is a tool designed to simplify filament spool management. It allows you to identify and weigh filament spools, 
+            FilaMan Lite is designed as add-on to FilaMan. It allows you to read and write NFC tags, which are used by FilaMan to
             automatically sync data with the self-hosted <a href="https://github.com/Donkie/Spoolman" target="_blank">Spoolman</a> platform.
+        </p>
+        <p>
+            FilaMan Lite connects to Spoolman for reading spool and location data, before writing it to a NFC tag.
+        </p>
+        <p>
+            FilaMan Lite does NOT write any information to Spoolman!
         </p>
 
         <p>Get more information at <a href="https://www.filaman.app" target="_blank">https://www.filaman.app</a> and <a href="https://github.com/ManuelW77/Filaman" target="_blank">https://github.com/ManuelW77/Filaman</a>.</p>
 
         <div class="features">
             <div class="feature">
-                <h3>Spool Identification</h3>
-                <p>Easily identify filament spools using NFC tags (NTag215 or larger).</p>
+                <h3>Writing Spool Tags</h3>
+                <p>Writes spool data from Spoolman to a NFC tag.</p>
             </div>
             <div class="feature">
-                <h3>Automatic Syncing</h3>
-                <p>Seamlessly update spool data with Spoolman for accurate tracking.</p>
+                <h3>Writing Location Tags</h3>
+                <p>Writes location data from Spoolman to a NFC tag.</p>
             </div>
             <div class="feature">
-                <h3>OpenSpool Compatibility</h3>
-                <p>Works with OpenSpool to recognize and activate spools on Bambu printers.</p>
+                <h3>Reading Tags</h3>
+                <p>Reads FilaMan compatible NFC tags and displays the stored data.</p>
             </div>
         </div>
     </div>
